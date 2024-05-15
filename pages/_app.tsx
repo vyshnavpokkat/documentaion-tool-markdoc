@@ -48,10 +48,11 @@ export type MyAppProps = MarkdocNextJsPageProps
 export default function MyApp({ Component, pageProps }: AppProps<MyAppProps>) {
   const { markdoc } = pageProps;
   const [markdownContent, setMarkdownContent] = useState<string>('');
-  const [apiboxHandle, isApiBoxHandle] = useState({ value: false, name: "docs1" })
-
+  const [apiboxHandle, isApiBoxHandle] = useState({ value: false, name: "doc1" });
 
   useEffect(() => {
+    const slug = window.location.hash.substr(1); // Get the fragment identifier
+
     fetch(`/api/${apiboxHandle.name}`)
       .then(response => response.json())
       .then(data => {
@@ -59,29 +60,23 @@ export default function MyApp({ Component, pageProps }: AppProps<MyAppProps>) {
       })
       .catch(error => console.error('Error fetching Markdown content:', error));
 
-      
-  }, [apiboxHandle.name]);
-
+  }, [apiboxHandle]); // Empty dependency array ensures the effect runs only once on mount
 
   let title = TITLE;
   let description = DESCRIPTION;
 
-
-  // Define partials in the configuration object
   const config = {
     partials: {
-      'doc.md': Markdoc.parse(markdownContent) // Content of header.md as a partial
+      'handle.md': Markdoc.parse(markdownContent)
     }
   };
 
   const doc = `
-    {% partial file="doc.md" /%}
+    {% partial file="handle.md" /%}
   `;
 
   const ast = Markdoc.parse(doc);
-
   const content = Markdoc.transform(ast, config);
-
   const html = Markdoc.renderers.html(content);
 
   if (markdoc) {
@@ -93,9 +88,7 @@ export default function MyApp({ Component, pageProps }: AppProps<MyAppProps>) {
     }
   }
 
-  const toc = pageProps.markdoc?.content
-    ? collectHeadings(pageProps.markdoc.content)
-    : [];
+  const toc = pageProps.markdoc?.content ? collectHeadings(pageProps.markdoc.content) : [];
 
   return (
     <>
@@ -121,51 +114,51 @@ export default function MyApp({ Component, pageProps }: AppProps<MyAppProps>) {
                 <Component {...pageProps} />
               </div>
             </div>
-            {apiboxHandle.value &&
+            {apiboxHandle.value && (
               <div className="right-component">
-                <button onClick={()=>isApiBoxHandle(prevState => ({ ...prevState, value: false }))}>close</button>
-                <div className="scrollable-content" style={{  padding: "15px" }}>
+                <button onClick={() => isApiBoxHandle(prevState => ({ ...prevState, value: false }))}>close</button>
+                <div className="scrollable-content" style={{ padding: "15px" }}>
                   <div dangerouslySetInnerHTML={{ __html: html }} />
                 </div>
               </div>
-            }
+            )}
           </main>
         </div>
 
         <style jsx>
           {`
-      .page {
-        position: fixed; 
-        top: var(--top-nav-height);
-        display: flex;
-        width: 100vw;
-        flex-grow: 1;
-      }
-      main {
-        display: flex;
-        justify-content:center;
-        overflow: hidden;
-        height: calc(100vh - var(--top-nav-height));
-        flex-grow: 1;
-        font-size: 16px;
-        padding: 0 2rem 2rem;
-      }
-      .scrollable-content {
-        overflow-y: auto;
-        height: 100%;
-        flex-grow: 1;
-        padding-right: 10px; /* Adjust as needed to avoid content being hidden behind scrollbar */
-        scrollbar-width: none; /* Firefox */
-        -ms-overflow-style: none; /* IE and Edge */
-      }
-      .left-component, .right-component {
-        width: 50%; /* Adjust as needed */
-        margin:10px;
-      }
-    `}
+            .page {
+              position: fixed;
+              top: var(--top-nav-height);
+              display: flex;
+              width: 100vw;
+              flex-grow: 1;
+            }
+            main {
+              display: flex;
+              justify-content: center;
+              overflow: hidden;
+              height: calc(100vh - var(--top-nav-height));
+              flex-grow: 1;
+              font-size: 16px;
+              padding: 0 2rem 2rem;
+            }
+            .scrollable-content {
+              overflow-y: auto;
+              height: 100%;
+              flex-grow: 1;
+              padding-right: 10px;
+              scrollbar-width: none;
+              -ms-overflow-style: none;
+            }
+            .left-component,
+            .right-component {
+              width: 50%;
+              margin: 10px;
+            }
+          `}
         </style>
       </DataContext.Provider>
-
     </>
   );
 }

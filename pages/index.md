@@ -11,14 +11,20 @@ This is a full-featured boilerplate for a creating a documentation website using
 
 # DOC 1
 
-{% clickbox title="docs1" %}
+{% clickbox title="doc1" %}
 Click here to show DOC1
 {% /clickbox %}
 
 # DOC 2
 
-{% clickbox  title="docs2" %}
+{% clickbox  title="doc2" %}
 Click here to show DOC2
+{% /clickbox %}
+
+doc 3
+
+{% clickbox  title="doc3" %}
+Click here to show DOC3
 {% /clickbox %}
 
 ## Setup

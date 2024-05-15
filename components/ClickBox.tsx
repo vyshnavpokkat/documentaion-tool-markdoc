@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { DataContext } from '../pages/_app';
+import { Router, useRouter } from 'next/router';
 
 interface ClickBoxProps {
   title: string;
@@ -9,12 +10,13 @@ interface ClickBoxProps {
 
 export function ClickBox({ title, children,name }: ClickBoxProps) {
   const { isApiBoxHandle } = useContext(DataContext);
+  const router=useRouter()
 
   const handleClick = () => {
     if (isApiBoxHandle) {
       isApiBoxHandle({name:title,value:true});
-      console.log("name========>",title);
-      
+      router.push(`/#${title}`)
+
     }
   };
 
