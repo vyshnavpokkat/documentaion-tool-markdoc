@@ -9,6 +9,7 @@ import 'prismjs/themes/prism.css';
 import '../public/globals.css'
 import type { AppProps } from 'next/app'
 import type { MarkdocNextJsPageProps } from '@markdoc/next.js'
+import Markdoc from '@markdoc/markdoc';
 
 export const DataContext = createContext(null);
 
@@ -46,7 +47,7 @@ export type MyAppProps = MarkdocNextJsPageProps
 
 export default function MyApp({ Component, pageProps }: AppProps<MyAppProps>) {
   const { markdoc } = pageProps;
-  const [markdownContent1, setMarkdownContent1] = useState<string>('');
+  const [markdownContent, setMarkdownContent] = useState<string>('');
   const [apiboxHandle, isApiBoxHandle] = useState({ value: false, name: "docs1" })
 
 
@@ -54,15 +55,35 @@ export default function MyApp({ Component, pageProps }: AppProps<MyAppProps>) {
     fetch(`/api/${apiboxHandle.name}`)
       .then(response => response.json())
       .then(data => {
-        setMarkdownContent1(data.content);
-        // setLoading(false);
+        setMarkdownContent(data.content);
       })
       .catch(error => console.error('Error fetching Markdown content:', error));
+
+      
   }, [apiboxHandle.name]);
 
 
   let title = TITLE;
   let description = DESCRIPTION;
+
+
+  // Define partials in the configuration object
+  const config = {
+    partials: {
+      'doc.md': Markdoc.parse(markdownContent) // Content of header.md as a partial
+    }
+  };
+
+  const doc = `
+    {% partial file="doc.md" /%}
+  `;
+
+  const ast = Markdoc.parse(doc);
+
+  const content = Markdoc.transform(ast, config);
+
+  const html = Markdoc.renderers.html(content);
+
   if (markdoc) {
     if (markdoc.frontmatter.title) {
       title = markdoc.frontmatter.title;
@@ -102,8 +123,9 @@ export default function MyApp({ Component, pageProps }: AppProps<MyAppProps>) {
             </div>
             {apiboxHandle.value &&
               <div className="right-component">
-                <div className="scrollable-content" style={{ backgroundColor: '#ddd', padding: "15px" }}>
-                  <ReactMarkdown>{markdownContent1}</ReactMarkdown>
+                <button onClick={()=>isApiBoxHandle(prevState => ({ ...prevState, value: false }))}>close</button>
+                <div className="scrollable-content" style={{  padding: "15px" }}>
+                  <div dangerouslySetInnerHTML={{ __html: html }} />
                 </div>
               </div>
             }
