@@ -1,38 +1,19 @@
 import React from 'react';
 import Link from 'next/link';
 
-export function TopNav({children}) {
+export function TopNav({ children }) {
   return (
     <nav>
-      <Link href="/" className="flex">
-        Home
-      </Link>
-      <section>{children}</section>
-      <style jsx>
-        {`
-          nav {
-            top: 0;
-            position: fixed;
-            width: 100%;
-            z-index: 100;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            padding: 1rem 2rem;
-            background: white;
-            border-bottom: 1px solid var(--border-color);
-          }
-          nav :global(a) {
-            text-decoration: none;
-          }
-          section {
-            display: flex;
-            gap: 1rem;
-            padding: 0;
-          }
-        `}
-      </style>
+      <nav className="bg-custom-darkGray w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600 top-nav">
+        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
+          <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
+            <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-custom-lightGray">DOCMACK</span>
+          </a>
+        </div>
+      </nav>
+
+      
+
     </nav>
   );
 }

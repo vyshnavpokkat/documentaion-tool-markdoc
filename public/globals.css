@@ -1,6 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  --top-nav-height: 51px;
   --border-color: #dce6e9;
+  --top-nav-height: 46px;
+}
+
+.lvh {
+  height: calc(100vh - var(--top-nav-height));
 }
 
 *,
@@ -20,16 +28,56 @@ body {
 p {
   line-height: 1.5em;
 }
-
-
 h1 {
-  font-size: 40px;
+  font-size: 29px;
+  line-height: 52px;
+  margin-top: 0rem;
+  font-weight: bold;
 }
 
 h2 {
-  margin: 1.5em 0;
+  font-size: 18px;
+  line-height: 26px;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+h3 {
+  font-size: 16px;
+  line-height: 20px;
+  margin-top: 2rem;
+  font-weight: bold;
+
 }
 
-a {
-  color: rgba(75, 85, 99, 1);
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #EEEEEE;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #76ABAE;
+  border-radius: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+th,
+td {
+  padding: 12px;
+  border: 1px solid #31363F;
+}
+
+th {
+  background-color: #31363F;
+  color: #EEEEEE;
+}
+
+td {
+  background-color: #222831;
+  color: #EEEEEE;
 }

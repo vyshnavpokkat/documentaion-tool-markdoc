@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import ReactMarkdown from 'react-markdown';
 import { SideNav, TableOfContents, TopNav } from '../components';
 import 'prismjs';
 import 'prismjs/components/prism-bash.min';
@@ -102,62 +101,31 @@ export default function MyApp({ Component, pageProps }: AppProps<MyAppProps>) {
           <link rel="shortcut icon" href="/favicon.ico" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        <TopNav>
+        <TopNav >
           <Link href="/docs">Docs</Link>
         </TopNav>
-
-        <div className="page">
-          <TableOfContents toc={toc} />
-          <main className="flex column">
-            <div className="left-component">
-              <div className="scrollable-content">
-                <Component {...pageProps} />
+        <div className="flex">
+          <div className="flex-none w-2/12">
+            <TableOfContents toc={toc} />
+          </div>
+          <div className="flex-initial w-5/12 p-4 lvh overflow-auto mx-auto">
+            <div className="flex-none relative outline-none mt-[-1px] flex flex-col">
+              <Component {...pageProps} />
+            </div>
+          </div>
+          {apiboxHandle?.value &&
+            <div className="flex-initial w-5/12 p-4 lvh overflow-auto bg-custom-mediumGray text-gray-200">
+              <button onClick={() => isApiBoxHandle(prevState => ({ ...prevState, value: false }))} type="button" className="absolute top-15 right-5 bg-transparent rounded-full p-2 inline-flex items-center justify-center text-gray-400 border border-gray-400 hover:text-gray-500 hover:bg-gray-100 hover:border-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+              <div className="flex-none relative outline-none mt-[-1px] flex flex-col">
+                <div dangerouslySetInnerHTML={{ __html: html }} />
               </div>
             </div>
-            {apiboxHandle.value && (
-              <div className="right-component">
-                <button onClick={() => isApiBoxHandle(prevState => ({ ...prevState, value: false }))}>close</button>
-                <div className="scrollable-content" style={{ padding: "15px" }}>
-                  <div dangerouslySetInnerHTML={{ __html: html }} />
-                </div>
-              </div>
-            )}
-          </main>
+          }
         </div>
-
-        <style jsx>
-          {`
-            .page {
-              position: fixed;
-              top: var(--top-nav-height);
-              display: flex;
-              width: 100vw;
-              flex-grow: 1;
-            }
-            main {
-              display: flex;
-              justify-content: center;
-              overflow: hidden;
-              height: calc(100vh - var(--top-nav-height));
-              flex-grow: 1;
-              font-size: 16px;
-              padding: 0 2rem 2rem;
-            }
-            .scrollable-content {
-              overflow-y: auto;
-              height: 100%;
-              flex-grow: 1;
-              padding-right: 10px;
-              scrollbar-width: none;
-              -ms-overflow-style: none;
-            }
-            .left-component,
-            .right-component {
-              width: 50%;
-              margin: 10px;
-            }
-          `}
-        </style>
       </DataContext.Provider>
     </>
   );

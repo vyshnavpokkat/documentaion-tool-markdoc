@@ -34,6 +34,7 @@ export function ClickBox({ title, children,name }: ClickBoxProps) {
             border-left: 5px solid #dce6e9;
             border-radius: 4px;
             cursor: pointer;
+            margin-top:10px;
           }
           .callout :global(p) {
             margin: 0;

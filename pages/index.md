@@ -8,20 +8,21 @@ description: How to get started with Markdoc
 {% callout title="Your Title Here"   %}
 This is a full-featured boilerplate for a creating a documentation website using Markdoc and Next.js.
 {% /callout %}
+## Second Head
 
-# DOC 1
+### DOC 1
 
 {% clickbox title="doc1" %}
 Click here to show DOC1
 {% /clickbox %}
 
-# DOC 2
+### DOC 2
 
 {% clickbox  title="doc2" %}
 Click here to show DOC2
 {% /clickbox %}
 
-doc 3
+### doc 3
 
 {% clickbox  title="doc3" %}
 Click here to show DOC3
