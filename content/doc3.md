@@ -10,18 +10,3 @@ This table lists the endpoints of a dummy API, including the HTTP method, endpoi
 | PUT         | /api/v1/users/{id}  | Updates a specific user    | `id`, `name`, `email`|
 | DELETE      | /api/v1/users/{id}  | Deletes a specific user    | `id`                 |
 
-## Example Usage
-
-### Get Users
-
-**Request:**
-
-```http
-GET /api/v1/users?page=1 HTTP/1.1
-Host: example.com
-
-###doc 3
-
-{% clickbox  title="doc3" %}
-Click here to show DOC3
-{% /clickbox %}

@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import { SideNav, TableOfContents, TopNav } from '../components';
+import { TableOfContents, TopNav } from '../components';
 import 'prismjs';
 import 'prismjs/components/prism-bash.min';
 import 'prismjs/themes/prism.css';
@@ -108,14 +108,14 @@ export default function MyApp({ Component, pageProps }: AppProps<MyAppProps>) {
           <div className="flex-none w-2/12">
             <TableOfContents toc={toc} />
           </div>
-          <div className="flex-initial w-5/12 p-4 lvh overflow-auto mx-auto">
+          <div className="flex-initial p-4 lvh overflow-auto mx-auto">
             <div className="flex-none relative outline-none mt-[-1px] flex flex-col">
               <Component {...pageProps} />
             </div>
           </div>
           {apiboxHandle?.value &&
-            <div className="flex-initial w-5/12 p-4 lvh overflow-auto bg-custom-mediumGray text-gray-200">
-              <button onClick={() => isApiBoxHandle(prevState => ({ ...prevState, value: false }))} type="button" className="absolute top-15 right-5 bg-transparent rounded-full p-2 inline-flex items-center justify-center text-gray-400 border border-gray-400 hover:text-gray-500 hover:bg-gray-100 hover:border-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+            <div className="flex-initial w-6/12 p-4 lvh overflow-auto bg-custom-mediumGray text-gray-200">
+              <button onClick={() => isApiBoxHandle(prevState => ({ ...prevState, value: false }))} type="button" className=" bg-transparent rounded-lg p-2 inline-flex items-center justify-center text-gray-400 border border-gray-400 hover:text-gray-500 hover:bg-gray-100 hover:border-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                 <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>

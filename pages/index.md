@@ -10,22 +10,10 @@ This is a full-featured boilerplate for a creating a documentation website using
 {% /callout %}
 ## Second Head
 
-### DOC 1
+### Doc 1
 
 {% clickbox title="doc1" %}
 Click here to show DOC1
-{% /clickbox %}
-
-### DOC 2
-
-{% clickbox  title="doc2" %}
-Click here to show DOC2
-{% /clickbox %}
-
-### doc 3
-
-{% clickbox  title="doc3" %}
-Click here to show DOC3
 {% /clickbox %}
 
 ## Setup
@@ -50,9 +38,28 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `index.md`. The page auto-updates as you edit the file.
 
+### Doc 2
+
+{% clickbox  title="doc2" %}
+Click here to show DOC2
+{% /clickbox %}
+
+
+
 ## Deploy
 
 The quickest way to deploy your own version of this boilerplate is by deploying it with [Vercel](https://vercel.com) or [Netlify](https://www.netlify.com/) by clicking one of the buttons below.
+
+
+{% callout %}
+Markdoc is open source check out its  to see how it works.
+{% /callout %}
+
+### Doc 3
+
+{% clickbox  title="doc3" %}
+Click here to show DOC3
+{% /clickbox %}
 
 ### Deploy with Vercel
 
