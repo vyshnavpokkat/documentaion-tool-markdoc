@@ -9,12 +9,12 @@ interface ClickBoxProps {
 }
 
 export function ClickBox({ title, children,name }: ClickBoxProps) {
-  const { isApiBoxHandle } = useContext(DataContext);
+  const { setApiBoxHandle } = useContext(DataContext);
   const router=useRouter()
 
   const handleClick = () => {
-    if (isApiBoxHandle) {
-      isApiBoxHandle({name:title,value:true});
+    if (setApiBoxHandle) {
+      setApiBoxHandle({name:title,value:true});
       router.push(`/#${title}`)
 
     }

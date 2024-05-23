@@ -13,7 +13,7 @@ export function TableOfContents({ toc }) {
   return (
     <aside id="default-sidebar" className="w-100 transition-transform -translate-x-full sm:translate-x-0 lvh overflow-auto" aria-label="Sidebar">
       <div className="h-full px-5 py-10 overflow-y-auto">
-        <ul className="max-w-md space-y-1 text-black-400 list-none list-inside border-r border-x-custom-mediumGray">
+        <ul className="max-w-md space-y-1 text-black-400 list-none list-inside border-r border-x-red-600">
           {items.map((item) => {
             const href = `#${item.id}`;
             const active =
@@ -22,7 +22,7 @@ export function TableOfContents({ toc }) {
               <li
                 key={item.title}
                 className={[
-                  active ? 'underline' : undefined,
+                  active ? 'text-red-600' : undefined,
                   item.level === 2? 'font-bold text-custom-mediumGray my-2': undefined,
                   item.level === 3 ? 'font-normal' : undefined,
                 ]

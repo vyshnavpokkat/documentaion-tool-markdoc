@@ -8,7 +8,18 @@ description: How to get started with Markdoc
 {% callout title="Your Title Here"   %}
 This is a full-featured boilerplate for a creating a documentation website using Markdoc and Next.js.
 {% /callout %}
-## Second Head
+
+## Introduction
+
+Markdoc is a powerful, flexible, Markdown-based authoring framework. It helps you create beautiful documentation sites with ease. This guide will walk you through the process of setting up and customizing your Markdoc-powered Next.js site.
+
+## Features
+
+- **Simple Setup**: Get started quickly with minimal configuration.
+- **Customizable**: Tailor the documentation to match your brand and needs.
+- **Interactive Components**: Use custom components to enhance your docs.
+- **Fast and SEO-friendly**: Built with Next.js for optimal performance.
+
 
 ### Doc 1
 
@@ -68,3 +79,24 @@ Click here to show DOC3
 ### Deploy to Netlify
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/markdoc/next.js-starter)
+
+
+### Explanation:
+- **Introduction**: Provides a brief overview of Markdoc and its purpose.
+- **Table of Contents**: Helps users navigate the document easily.
+- **Features**: Lists key features to highlight the strengths of Markdoc.
+- **Setup**: Instructions to get the project up and running.
+- **Customization**: Details on how to customize the project, including adding new components and styling.
+- **Deploy**: Guides on how to deploy the project using Vercel or Netlify.
+- **Support**: Resources for further help and contributions.
+
+This structure makes the document more professional and user-friendly, providing clear guidance and additional context.
+
+## Table of Contents
+
+1. [Introduction](#introduction)
+2. [Features](#features)
+3. [Setup](#setup)
+4. [Customization](#customization)
+5. [Deploy](#deploy)
+6. [Support](#support)
